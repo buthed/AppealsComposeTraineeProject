@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">AppealsComposeTraineeProject</string>
+
+    <string name="helpdesk">Поддержка</string>
+    <string name="appeals">Обращение</string>
+    <string name="appeals_history">История обращений</string>
+    <string name="attach_files">Приложить файлы</string>
+    <string name="sent">Отправить сообщение</string>
+    <string name="date">Дата</string>
+    <string name="number">Номер</string>
+    <string name="themes">Тематика</string>
+    <string name="theme">Тема обращения</string>
+    <string name="account_number">Номер лицевого счета</string>
+    <string name="status">Статус</string>
+    <string name="initials">ФИО</string>
+    <string name="search_hint">Введите текст для поиска</string>
+
 </resources>
