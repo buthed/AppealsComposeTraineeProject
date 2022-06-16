@@ -26,7 +26,6 @@ fun AppealScreen(
         ) {
             var themeInput by remember { mutableStateOf("") }
 
-
             Column(
                 modifier = Modifier.fillMaxWidth()
             ) {
@@ -38,7 +37,7 @@ fun AppealScreen(
                         .height(50.dp),
                     value = themeInput,
                     onValueChange = { themeInput = it },
-                    label = { Text(stringResource(id = R.string.appeals_theme)) },
+                    label = { Text(stringResource(R.string.appeals_theme)) },
                     trailingIcon = { Icon(Icons.Filled.ArrowDropDown, contentDescription = "List") },
                 )
                 TextField(
@@ -48,7 +47,7 @@ fun AppealScreen(
                         .height(50.dp),
                     value = themeInput,
                     onValueChange = { themeInput = it },
-                    label = { Text(stringResource(id = R.string.appeals_account_number)) },
+                    label = { Text(stringResource(R.string.appeals_account_number)) },
                 )
                 //TODO Доделать кастомный переиспользуемый инпут
                 Box() {
@@ -56,7 +55,7 @@ fun AppealScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(20.dp),
-                        text = stringResource(id = R.string.appeals_attach_files),
+                        text = stringResource(R.string.appeals_attach_files),
                         textAlign = TextAlign.Center
                     )
                 }
@@ -64,7 +63,7 @@ fun AppealScreen(
                     onClick = { /*TODO*/ },
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text(text = stringResource(id = R.string.appeals_sent_button))
+                    Text(text = stringResource(R.string.appeals_sent_button))
                 }
             }
         }

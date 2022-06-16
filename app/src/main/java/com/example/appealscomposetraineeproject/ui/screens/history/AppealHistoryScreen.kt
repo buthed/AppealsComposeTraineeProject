@@ -15,34 +15,27 @@ import com.example.appealscomposetraineeproject.ui.theme.MainTheme
 
 @Composable
 fun AppealHistoryScreen() {
-    Scaffold(
-        modifier = Modifier
-            .fillMaxSize()
-    ) {
-        Surface(
-            modifier = Modifier.fillMaxWidth()
-        ) {
+    Scaffold(Modifier.fillMaxSize()) {
+        Surface(Modifier.fillMaxWidth()) {
             var search by remember { mutableStateOf("") }
 
-            Column(
-                modifier = Modifier.fillMaxWidth()
-            ) {
+            Column(Modifier.fillMaxWidth()) {
                 OutlinedTextField(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(46.dp, 38.dp, 46.dp, 38.dp),
+                        .padding(horizontal = 46.dp, vertical = 38.dp),
                     shape = RoundedCornerShape(50.dp),
                     value = search,
                     onValueChange = { search = it },
-                    label = { Text("Поиск") },
+                    label = { Text(stringResource(R.string.ah_search_hint)) },
                     leadingIcon = { Icon(Icons.Filled.Search, contentDescription = "Search") },
                 )
                 Box() {
                     Row() {
-                        Text(text = stringResource(id = R.string.ah_date))
-                        Text(text = stringResource(id = R.string.ah_number))
-                        Text(text = stringResource(id = R.string.ah_themes))
-                        Text(text = stringResource(id = R.string.ah_status))
+                        Text(text = stringResource(R.string.ah_date))
+                        Text(text = stringResource(R.string.ah_number))
+                        Text(text = stringResource(R.string.ah_themes))
+                        Text(text = stringResource(R.string.ah_status))
                     }
 
                 }

@@ -13,6 +13,7 @@ import com.example.appealscomposetraineeproject.ui.screens.appeal.AppealScreen
 
 @Composable
 fun CustomTextFields(
+    modifier: Modifier = Modifier,
     placeholder: String,
     textFieldValue: String,
     onTextFieldChange: (String) -> Unit

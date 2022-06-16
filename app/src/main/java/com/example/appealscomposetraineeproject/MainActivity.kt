@@ -16,6 +16,8 @@ class MainActivity : ComponentActivity() {
             Scaffold {
                 TopAppBarCompose()
                 Greeting("Android")
+
+
             }
         }
     }
@@ -25,7 +27,6 @@ class MainActivity : ComponentActivity() {
 fun Greeting(name: String) {
     Text(text = "Hello $name!")
 }
-
 
 @Preview(showBackground = true)
 @Composable
