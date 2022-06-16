@@ -11,10 +11,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.appealscomposetraineeproject.R
+import com.example.appealscomposetraineeproject.ui.theme.AppealsComposeTheme
+import com.example.appealscomposetraineeproject.ui.theme.MainTheme
 
 @Composable
 fun AppealScreen(
-    onTextFieldChange: String
 ) {
     Scaffold(modifier = Modifier
         .fillMaxSize()
@@ -73,5 +74,7 @@ fun AppealScreen(
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreviewAppealScreen() {
-    AppealScreen("123")
+    MainTheme {
+        AppealScreen()
+    }
 }

@@ -3,14 +3,10 @@ package com.example.appealscomposetraineeproject
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.appealscomposetraineeproject.ui.theme.AppealsComposeTraineeProjectTheme
+import com.example.appealscomposetraineeproject.ui.theme.MainTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,8 +16,6 @@ class MainActivity : ComponentActivity() {
             Scaffold {
                 TopAppBarCompose()
                 Greeting("Android")
-
-
             }
         }
     }
@@ -36,7 +30,7 @@ fun Greeting(name: String) {
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    AppealsComposeTraineeProjectTheme {
+    MainTheme {
         Greeting("Android")
     }
 }

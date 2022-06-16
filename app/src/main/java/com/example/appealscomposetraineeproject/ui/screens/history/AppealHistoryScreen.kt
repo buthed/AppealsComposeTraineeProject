@@ -11,6 +11,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.appealscomposetraineeproject.R
+import com.example.appealscomposetraineeproject.ui.theme.MainTheme
 
 @Composable
 fun AppealHistoryScreen() {
@@ -53,5 +54,7 @@ fun AppealHistoryScreen() {
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreviewAppealHistoryScreen() {
-    AppealHistoryScreen()
+    MainTheme {
+        AppealHistoryScreen()
+    }
 }

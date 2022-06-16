@@ -13,16 +13,11 @@ val Typography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
     )
-    /* Other default text styles to override
-    button = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.W500,
-        fontSize = 14.sp
-    ),
-    caption = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 12.sp
-    )
-    */
+)
+
+val extendedTypography = AppealsComposeTypography(
+    heading = TextStyle(fontSize =  18.sp),
+    body = TextStyle(fontSize = 14.sp),
+    caption = TextStyle(fontSize = 12.sp),
+    smallCaption = TextStyle(fontSize = 10.sp)
 )
