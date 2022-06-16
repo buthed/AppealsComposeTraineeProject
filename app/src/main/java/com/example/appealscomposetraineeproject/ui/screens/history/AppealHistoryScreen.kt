@@ -38,10 +38,10 @@ fun AppealHistoryScreen() {
                 )
                 Box() {
                     Row() {
-                        Text(text = stringResource(id = R.string.date))
-                        Text(text = stringResource(id = R.string.number))
-                        Text(text = stringResource(id = R.string.theme))
-                        Text(text = stringResource(id = R.string.status))
+                        Text(text = stringResource(id = R.string.ah_date))
+                        Text(text = stringResource(id = R.string.ah_number))
+                        Text(text = stringResource(id = R.string.ah_themes))
+                        Text(text = stringResource(id = R.string.ah_status))
                     }
 
                 }
