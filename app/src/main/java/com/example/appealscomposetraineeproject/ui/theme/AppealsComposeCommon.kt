@@ -13,7 +13,8 @@ data class AppealsComposeColors(
     val YellowStatus: Color,
     val RedStatus: Color,
     val GraySpaces: Color,
-    val Background: Color
+    val Background: Color,
+    val GrayLabel: Color
 )
 
 data class AppealsComposeTypography(

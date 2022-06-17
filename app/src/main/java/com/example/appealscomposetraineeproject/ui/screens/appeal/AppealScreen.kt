@@ -1,6 +1,7 @@
 package com.example.appealscomposetraineeproject.ui.screens.appeal
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
@@ -11,39 +12,55 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.appealscomposetraineeproject.R
+import com.example.appealscomposetraineeproject.ui.screens.appeal.components.CustomTextField
 import com.example.appealscomposetraineeproject.ui.theme.MainTheme
 
 @Composable
-fun AppealScreen(
-) {
-    Scaffold(Modifier.fillMaxSize().padding(15.dp)) {
+fun AppealScreen() {
+    Scaffold(
+        Modifier
+            .fillMaxSize()
+            .padding(horizontal = 10.dp, vertical = 40.dp)) {
 
-        Surface(Modifier.fillMaxWidth(1f)) {
+        Surface(Modifier.fillMaxWidth()) {
             var themeInput by remember { mutableStateOf("") }
+            var accountNumberInput by remember { mutableStateOf("") }
+            var fullNameInput by remember { mutableStateOf("") }
+            var addressInput by remember { mutableStateOf("") }
+            var phoneNumberInput by remember { mutableStateOf("") }
+            var emailInput by remember { mutableStateOf("") }
+            var textInput by remember { mutableStateOf("") }
 
-            Column(
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                TextField(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(5.dp)
-                        .height(50.dp),
-                    value = themeInput,
-                    onValueChange = { themeInput = it },
-                    label = { Text(stringResource(R.string.appeals_theme)) },
-                    trailingIcon = { Icon(Icons.Filled.ArrowDropDown, contentDescription = "List") },
-                )
-                TextField(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(5.dp)
-                        .height(50.dp),
-                    value = themeInput,
-                    onValueChange = { themeInput = it },
-                    label = { Text(stringResource(R.string.appeals_account_number)) },
-                )
-                //TODO Доделать кастомный переиспользуемый инпут
+            Column{
+                CustomTextField(
+                    modifier = Modifier.fillMaxWidth(),
+                    input = themeInput,
+                    label = stringResource(R.string.appeals_theme))
+                CustomTextField(
+                    modifier = Modifier.fillMaxWidth(),
+                    input = accountNumberInput,
+                    label = stringResource(R.string.appeals_account_number))
+                CustomTextField(
+                    modifier = Modifier.fillMaxWidth(),
+                    input = fullNameInput,
+                    label = stringResource(R.string.appeals_initials))
+                CustomTextField(
+                    modifier = Modifier.fillMaxWidth(),
+                    input = addressInput,
+                    label = stringResource(R.string.appeals_address))
+                CustomTextField(
+                    modifier = Modifier.fillMaxWidth(),
+                    input = phoneNumberInput,
+                    label = stringResource(R.string.appeals_phone))
+                CustomTextField(
+                    modifier = Modifier.fillMaxWidth(),
+                    input = emailInput,
+                    label = stringResource(R.string.appeals_email))
+                CustomTextField(
+                    modifier = Modifier.fillMaxWidth(),
+                    input = textInput,
+                    label = stringResource(R.string.appeals_text_of_appeal))
+
                 Box() {
                     Text(
                         modifier = Modifier

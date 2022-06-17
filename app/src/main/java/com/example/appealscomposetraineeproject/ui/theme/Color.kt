@@ -11,4 +11,5 @@ val extendedPalette = AppealsComposeColors(
     RedStatus = Color(0xFFFF0000),
     GraySpaces = Color(0xFFE5E5E5),
     Background = Color(0xFFFFFFFF),
+    GrayLabel = Color(0xFFCFCFCF)
 )
