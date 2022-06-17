@@ -1,6 +1,5 @@
 package com.example.appealscomposetraineeproject.ui.theme
 
-import android.graphics.fonts.Font
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.runtime.Composable

@@ -13,13 +13,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.appealscomposetraineeproject.R
 import com.example.appealscomposetraineeproject.ui.screens.history.components.AppealsTable
-import com.example.appealscomposetraineeproject.ui.screens.history.components.SearchField
 import com.example.appealscomposetraineeproject.ui.theme.MainTheme
 
 @Composable
 fun AppealHistoryScreen() {
     Scaffold(Modifier.fillMaxSize()) {
-        Surface(Modifier.fillMaxWidth(),) {
+        Surface(Modifier.fillMaxWidth()) {
             var search by remember { mutableStateOf("") }
 
             Column(
@@ -38,7 +37,7 @@ fun AppealHistoryScreen() {
                     leadingIcon = { Icon(Icons.Filled.Search, contentDescription = "Search") },
                 )
                 Spacer(modifier = Modifier.height(50.dp))
-                AppealsTable(modifier = Modifier.fillMaxWidth(), alignment = Arrangement.SpaceAround)
+                AppealsTable()
             }
         }
     }

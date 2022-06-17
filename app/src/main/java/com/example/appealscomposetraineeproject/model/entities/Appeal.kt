@@ -1,7 +1,5 @@
 package com.example.appealscomposetraineeproject.model.entities
 
-import java.util.*
-
 data class Appeal(
     val date: String,
     val number: Int,

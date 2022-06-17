@@ -1,6 +1,5 @@
 package com.example.appealscomposetraineeproject.ui.screens.history.components
 
-import android.graphics.fonts.FontStyle
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -21,9 +20,7 @@ import com.example.appealscomposetraineeproject.ui.theme.AppealsComposeTheme
 import com.example.appealscomposetraineeproject.ui.theme.MainTheme
 
 @Composable
-fun AppealsTable(
-    modifier: Modifier = Modifier,
-    alignment: Arrangement.HorizontalOrVertical = Arrangement.SpaceAround) {
+fun AppealsTable() {
     val data = getAppeals()
     AppealsTable1(data = data)
 
@@ -95,7 +92,7 @@ fun TableText(
 @Composable
 fun DefaultPreviewAppealsTable() {
     MainTheme {
-        AppealsTable(modifier = Modifier.padding(horizontal = 20.dp), alignment = Arrangement.SpaceAround)
+        AppealsTable()
     }
 }
 
@@ -103,6 +100,6 @@ fun DefaultPreviewAppealsTable() {
 @Composable
 fun DefaultPreviewAppealsTable2() {
     MainTheme {
-        AppealsTable(modifier = Modifier.fillMaxWidth(), alignment = Arrangement.SpaceAround)
+        AppealsTable()
     }
 }

@@ -47,21 +47,6 @@ fun SearchField() {
             leadingIcon = { Icon(Icons.Filled.Search, contentDescription = "Search") },
         )
     }
-
-}
-
-@Composable
-fun RoundedCornerShapeDemo(){
-    ExampleBox(shape = RoundedCornerShape(10.dp))
-}
-
-@Composable
-fun ExampleBox(shape: Shape){
-    Column(modifier = Modifier.fillMaxWidth().wrapContentSize(Alignment.Center)) {
-        Box(
-            modifier = Modifier.size(100.dp,10.dp).clip(shape).background(Color.Red)
-        )
-    }
 }
 
 @Preview(showBackground = true)

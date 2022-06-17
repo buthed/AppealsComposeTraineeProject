@@ -16,8 +16,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.example.appealscomposetraineeproject.MainScreen
 import com.example.appealscomposetraineeproject.R
 import com.example.appealscomposetraineeproject.ui.screens.appeal.AppealScreen
 import com.example.appealscomposetraineeproject.ui.screens.history.AppealHistoryScreen
@@ -38,7 +36,7 @@ fun CustomTabLayout(pagerState: PagerState) {
     Column {
         TabRow(
             selectedTabIndex = pagerState.currentPage,
-            Modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight(),
             backgroundColor = AppealsComposeTheme.colors.Background,
@@ -49,7 +47,7 @@ fun CustomTabLayout(pagerState: PagerState) {
                     color = AppealsComposeTheme.colors.Blue,
                     height = 2.dp
                 )
-            }//TODO добавить на индикатор синий цвет
+            }
         ) {
             tabItems.forEachIndexed { index,title ->
 
@@ -87,7 +85,6 @@ fun PagerContent(pagerState: PagerState) {
                 }
             }
         }
-
     }
 }
 
