@@ -1,7 +1,6 @@
 package com.example.appealscomposetraineeproject.ui.theme
 
 import androidx.compose.material.Typography
-import androidx.compose.ui.res.fontResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -31,15 +30,16 @@ val extendedTypography = AppealsComposeTypography(
         fontSize =  18.sp,
         fontFamily = extendedFonts
     ),
-    body = TextStyle(
+    columnName = TextStyle(
         fontSize = 14.sp,
-        fontFamily = extendedFonts
+        fontFamily = extendedFonts,
+        fontWeight = FontWeight.Bold
     ),
-    caption = TextStyle(
+    tableText = TextStyle(
         fontSize = 12.sp,
         fontFamily = extendedFonts
     ),
-    smallCaption = TextStyle(
+    smallSmallTableText = TextStyle(
         fontSize = 10.sp,
         fontFamily = extendedFonts
     )

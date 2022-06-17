@@ -18,9 +18,9 @@ data class AppealsComposeColors(
 
 data class AppealsComposeTypography(
     val heading: TextStyle,
-    val body: TextStyle,
-    val caption: TextStyle,
-    val smallCaption: TextStyle
+    val columnName: TextStyle,
+    val tableText: TextStyle,
+    val smallSmallTableText: TextStyle
 )
 
 object AppealsComposeTheme {
