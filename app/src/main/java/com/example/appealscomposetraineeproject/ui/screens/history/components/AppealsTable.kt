@@ -31,29 +31,14 @@ fun AppealsTable1(data: List<Appeal>) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Row(
-            Modifier.height(35.dp),
-            Arrangement.SpaceAround,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            TableTextColumName(Modifier.weight(1f),stringResource(R.string.ah_date))
-            TableTextColumName(Modifier.weight(1f),stringResource(R.string.ah_number))
-            TableTextColumName(Modifier.weight(1f),stringResource(R.string.ah_themes))
-            TableTextColumName(Modifier.weight(1f),stringResource(R.string.ah_status))
-        }
+        ColumnHeader(Modifier.height(35.dp))
         Divider(color = AppealsComposeTheme.colors.GraySpaces, thickness = 2.dp)
         LazyColumn{
             items(data) { data ->
-                Row(
-                    Modifier.fillMaxWidth().height(50.dp),
-                    Arrangement.SpaceAround,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    TableText(Modifier.weight(1f),data.date)
-                    TableText(Modifier.weight(1f),data.number.toString())
-                    TableText(Modifier.weight(1f),data.theme)
-                    TableText(Modifier.weight(1f),data.status)
-                }
+                TableRow(
+                    Modifier
+                        .fillMaxWidth()
+                        .height(50.dp),data)
                 Divider(color = AppealsComposeTheme.colors.GraySpaces, thickness = 2.dp)
             }
         }
@@ -61,7 +46,38 @@ fun AppealsTable1(data: List<Appeal>) {
 }
 
 @Composable
-fun TableTextColumName(
+fun TableRow(modifier: Modifier = Modifier,
+    data: Appeal) {
+    Row(
+        modifier = modifier,
+        Arrangement.SpaceAround,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        TableText(Modifier.weight(1f),data.date)
+        TableText(Modifier.weight(1f),data.number.toString())
+        TableText(Modifier.weight(1f),data.theme)
+        TableText(Modifier.weight(1f),data.status)
+    }
+}
+
+@Composable
+fun ColumnHeader(modifier: Modifier = Modifier){
+    Row(
+        modifier = modifier,
+        Arrangement.SpaceAround,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        TableTextColumnName(Modifier.weight(1f),stringResource(R.string.ah_date))
+        TableTextColumnName(Modifier.weight(1f),stringResource(R.string.ah_number))
+        TableTextColumnName(Modifier.weight(1f),stringResource(R.string.ah_themes))
+        TableTextColumnName(Modifier.weight(1f),stringResource(R.string.ah_status))
+    }
+}
+
+
+
+@Composable
+fun TableTextColumnName(
     modifier: Modifier = Modifier,
     text: String,
     style: TextStyle = AppealsComposeTheme.typography.columnName
