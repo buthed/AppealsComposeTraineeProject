@@ -24,6 +24,11 @@
     <string name="ah_number">Номер</string>
     <string name="ah_themes">Тематика</string>
     <string name="ah_status">Статус</string>
+    <string name="ah_themes_title">Тематика: </string>
+    <string name="ah_text_of_appeal">Текст обращения: </string>
+    <string name="ah_text_of_answer">Текст ответа: </string>
+    ß<string name="ah_attached_files">Вложенные файлы: </string>
+
 
     <!-- Appeals themes (at_*) -->
     <string name="at_testimony">Передача показаний</string>

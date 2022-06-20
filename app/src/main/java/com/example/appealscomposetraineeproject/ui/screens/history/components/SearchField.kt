@@ -62,7 +62,6 @@ fun SearchField(
                                     lineHeight = 14.sp,
                                 )
                             }
-
                         } else {
                             Box(
                                 modifier = Modifier.size(14.dp).weight(1f).padding(end = 14.dp),

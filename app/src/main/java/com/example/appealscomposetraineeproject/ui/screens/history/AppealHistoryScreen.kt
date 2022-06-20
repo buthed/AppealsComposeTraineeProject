@@ -12,12 +12,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.appealscomposetraineeproject.R
+import com.example.appealscomposetraineeproject.model.entities.getAppeals
 import com.example.appealscomposetraineeproject.ui.screens.history.components.AppealsTable
 import com.example.appealscomposetraineeproject.ui.screens.history.components.SearchField
 import com.example.appealscomposetraineeproject.ui.theme.MainTheme
 
 @Composable
 fun AppealHistoryScreen() {
+    val data = getAppeals()
+
     Scaffold(Modifier.fillMaxSize()) {
         Surface(Modifier.fillMaxWidth()) {
             var search by remember { mutableStateOf("") }
@@ -33,8 +36,8 @@ fun AppealHistoryScreen() {
                         .height(31.dp)
                         .padding(horizontal = 46.dp),
                     input = search,)
-                Spacer(modifier = Modifier.height(58.dp))
-                AppealsTable()
+                Spacer(modifier = Modifier.height(35.dp))
+                AppealsTable(data)
             }
         }
     }
