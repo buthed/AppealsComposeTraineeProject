@@ -3,7 +3,8 @@
 
     <string name="helpdesk">Поддержка</string>
 
-    // Appeals
+
+    <!-- Appeals (appeals_*) -->
     <string name="appeals_title">Обращение</string>
     <string name="appeals_theme">Тема обращения</string>
     <string name="appeals_account_number">Номер лицевого счета</string>
@@ -15,7 +16,8 @@
     <string name="appeals_attach_files">Приложить файлы</string>
     <string name="appeals_sent_button">Отправить сообщение</string>
 
-    // Appeals history (ah_*)
+
+    <!--     Appeals history (ah_*)  -->
     <string name="ah_title">История обращений</string>
     <string name="ah_search_hint">Введите текст для поиска</string>
     <string name="ah_date">Дата</string>
@@ -23,4 +25,8 @@
     <string name="ah_themes">Тематика</string>
     <string name="ah_status">Статус</string>
 
+    <!-- Appeals themes (at_*) -->
+    <string name="at_testimony">Передача показаний</string>
+    <string name="at_debt">Задолженность</string>
+    <string name="at_accrual_ODN">Начисление ОДН</string>
 </resources>
