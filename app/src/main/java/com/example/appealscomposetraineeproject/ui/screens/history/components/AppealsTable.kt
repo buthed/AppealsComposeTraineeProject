@@ -1,6 +1,10 @@
 package com.example.appealscomposetraineeproject.ui.screens.history.components
 
 import android.util.Log
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.slideInHorizontally
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -11,6 +15,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -24,6 +29,7 @@ import com.example.appealscomposetraineeproject.model.entities.getAppeals
 import com.example.appealscomposetraineeproject.ui.theme.AppealsComposeTheme
 import com.example.appealscomposetraineeproject.ui.theme.MainTheme
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun AppealsTable(data: List<Appeal>) {
     Column(
@@ -33,7 +39,7 @@ fun AppealsTable(data: List<Appeal>) {
         Divider(color = AppealsComposeTheme.colors.GraySpaces, thickness = 2.dp)
         LazyColumn{
             items(data) { data ->
-                var hideRow  by remember { mutableStateOf(true) }
+                var hideRow  by remember { mutableStateOf(false) }
                 TableRow(
                     Modifier
                         .fillMaxWidth()
@@ -45,8 +51,14 @@ fun AppealsTable(data: List<Appeal>) {
                             }
                         ),
                     data)
-                if (!hideRow) TableAdditionalInfo(data)
-                Divider(color = AppealsComposeTheme.colors.GraySpaces, thickness = 2.dp)
+                AnimatedVisibility(visible = hideRow) {
+                    TableAdditionalInfo(
+                        Modifier.fillMaxWidth().animateEnterExit(
+                            enter = slideInHorizontally { it },
+                            exit = ExitTransition.None
+                        ),
+                        data)
+                }
             }
         }
     }
@@ -68,7 +80,9 @@ fun TableRow(modifier: Modifier = Modifier,
 }
 
 @Composable
-fun TableAdditionalInfo(data: Appeal) {
+fun TableAdditionalInfo(
+    modifier: Modifier = Modifier.fillMaxWidth(),
+    data: Appeal) {
     Surface(Modifier.fillMaxWidth()) {
         Column(Modifier.fillMaxWidth()) {
             Row(
@@ -142,8 +156,6 @@ fun ColumnHeader(modifier: Modifier = Modifier){
     }
 }
 
-
-
 @Composable
 fun TableTextColumnName(
     modifier: Modifier = Modifier,
@@ -188,6 +200,8 @@ fun DefaultPreviewTableRowAdditionalInfo() {
             "я передавал показания 20.01.2021 года 5516, а в квитанции 5550. Прошу Вас разобраться в данной ситуации.","В квитанции за январь у меня не правильно отражаются показания, последний раз\n" +
             "я передавал показания 20.01.2021 года 5516, а в квитанции 5550. Прошу Вас разобраться в данной ситуации.")
     MainTheme {
-        TableAdditionalInfo(data)
+        TableAdditionalInfo(
+            Modifier.fillMaxWidth(),
+            data)
     }
 }
