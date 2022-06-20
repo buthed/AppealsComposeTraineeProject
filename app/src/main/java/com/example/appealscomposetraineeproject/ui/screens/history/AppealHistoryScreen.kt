@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.appealscomposetraineeproject.R
 import com.example.appealscomposetraineeproject.ui.screens.history.components.AppealsTable
+import com.example.appealscomposetraineeproject.ui.screens.history.components.SearchField
 import com.example.appealscomposetraineeproject.ui.theme.MainTheme
 
 @Composable
@@ -25,18 +26,14 @@ fun AppealHistoryScreen() {
                 Modifier.fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                OutlinedTextField(
+                Spacer(modifier = Modifier.height(31.dp))
+                SearchField(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(31.dp)
-                        .padding(horizontal = 46.dp, vertical = 38.dp),
-                    shape = RoundedCornerShape(50.dp),
-                    value = search,
-                    onValueChange = { search = it },
-                    label = { Text(stringResource(R.string.ah_search_hint)) },
-                    leadingIcon = { Icon(Icons.Filled.Search, contentDescription = "Search") },
-                )
-                Spacer(modifier = Modifier.height(50.dp))
+                        .padding(horizontal = 46.dp),
+                    input = search,)
+                Spacer(modifier = Modifier.height(58.dp))
                 AppealsTable()
             }
         }

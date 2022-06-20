@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/temaT/AndroidStudioProjects/AppealsComposeTraineeProject/app/src/main/res/drawable/icon_clear.xml" value="0.202" />
         <entry key="..\:/Users/temaT/AndroidStudioProjects/AppealsComposeTraineeProject/app/src/main/res/drawable/icon_left.xml" value="0.171" />
+        <entry key="..\:/Users/temaT/AndroidStudioProjects/AppealsComposeTraineeProject/app/src/main/res/drawable/icon_search.xml" value="0.1545" />
         <entry key="..\:/Users/temaT/AndroidStudioProjects/AppealsComposeTraineeProject/app/src/main/res/font/font_roboto.xml" value="0.21458333333333332" />
       </map>
     </option>
