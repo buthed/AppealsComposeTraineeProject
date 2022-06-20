@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -11,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import com.example.appealscomposetraineeproject.R
 import com.example.appealscomposetraineeproject.ui.screens.appeal.components.AppealDropDownMenu
 import com.example.appealscomposetraineeproject.ui.screens.appeal.components.CustomTextField
+import com.example.appealscomposetraineeproject.ui.theme.AppealsComposeTheme
 import com.example.appealscomposetraineeproject.ui.theme.MainTheme
 
 @Composable
@@ -62,14 +64,21 @@ fun AppealScreen() {
                     Text(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(20.dp),
+                            .padding(30.dp),
+                        color = AppealsComposeTheme.colors.Blue,
                         text = stringResource(R.string.appeals_attach_files),
                         textAlign = TextAlign.Center
                     )
                 }
                 Button(
                     onClick = { /*TODO*/ },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth().height(50.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor = AppealsComposeTheme.colors.Blue,
+                        contentColor = Color.White,
+                        disabledContentColor = AppealsComposeTheme.colors.GrayLabel,
+
+                    )
                 ) {
                     Text(text = stringResource(R.string.appeals_sent_button))
                 }

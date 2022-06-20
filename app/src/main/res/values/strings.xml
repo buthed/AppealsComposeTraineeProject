@@ -14,7 +14,7 @@
     <string name="appeals_email">email</string>
     <string name="appeals_text_of_appeal">Текст обращения</string>
     <string name="appeals_attach_files">Приложить файлы</string>
-    <string name="appeals_sent_button">Отправить сообщение</string>
+    <string name="appeals_sent_button">Отправить обращение</string>
 
 
     <!--     Appeals history (ah_*)  -->
