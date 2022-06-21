@@ -9,18 +9,26 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.Divider
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.modifier.modifierLocalConsumer
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.appealscomposetraineeproject.R
@@ -51,13 +59,17 @@ fun AppealsTable(data: List<Appeal>) {
                             }
                         ),
                     data)
+                Divider(color = AppealsComposeTheme.colors.GraySpaces, thickness = 2.dp)
                 AnimatedVisibility(visible = hideRow) {
                     TableAdditionalInfo(
-                        Modifier.fillMaxWidth().animateEnterExit(
-                            enter = slideInHorizontally { it },
-                            exit = ExitTransition.None
-                        ),
+                        Modifier
+                            .fillMaxWidth()
+                            .animateEnterExit(
+                                enter = slideInHorizontally { it },
+                                exit = ExitTransition.None
+                            ),
                         data)
+
                 }
             }
         }
@@ -90,7 +102,9 @@ fun TableAdditionalInfo(
                     .fillMaxWidth()
             ) {
                 TableText(
-                    Modifier.weight(1f).padding(top = 50.dp),
+                    Modifier
+                        .weight(1f)
+                        .padding(top = 50.dp),
                     data.date,
                     style = TextStyle(color = AppealsComposeTheme.colors.GrayStatus)
                 )
@@ -105,7 +119,16 @@ fun TableAdditionalInfo(
             Spacer(Modifier.height(25.dp))
             Box(){
                 Row(Modifier.padding(start = 17.dp)) {
-                    AdditionalTitleTable(stringResource(R.string.ah_attached_files))
+                    AdditionalTitleTable(
+                        modifier = Modifier.weight(2f),
+                        text = stringResource(R.string.ah_attached_files))
+                    HyperlinkText(
+                        modifier = Modifier.weight(3f),
+                        fullText = stringResource(R.string.ah_attached_files_link),
+                        linkText = listOf(stringResource(R.string.ah_attached_files_link)),
+                        hyperlinks = listOf("https://ru.wikipedia.org/wiki/%D0%A4%D0%B0%D0%B9%D0%BB"),
+                        fontSize = 10.sp
+                    )
                 }
             }
         }
@@ -115,31 +138,41 @@ fun TableAdditionalInfo(
 @Composable
 fun AdditionalInfoRow(title: String, text: String) {
     Row() {
-        AdditionalTitleTable(title)
-        AdditionalTextTable(text)
+        Text(
+            buildAnnotatedString {
+                withStyle(style = SpanStyle(
+                    fontSize = 10.sp,
+                    fontWeight = FontWeight.Bold
+                )) {
+                    append(title)
+                }
+                append(": ")
+                withStyle(style = SpanStyle(
+                    fontSize = 10.sp,
+                    fontStyle = AppealsComposeTheme.typography.smallSmallTableText.fontStyle
+                )
+                ){
+                    append(text)
+                }
+
+            }
+        )
+//        AdditionalTitleTable(title)
+//        AdditionalTextTable(text)
     }
     Spacer(Modifier.height(3.dp))
 }
 
 @Composable
 fun AdditionalTitleTable(
+    modifier: Modifier = Modifier,
     text: String,
 ) {
     Text(
+        modifier = modifier,
         text = text,
         fontSize = 10.sp,
         fontWeight = FontWeight.Bold)
-}
-
-
-@Composable
-fun AdditionalTextTable(
-    text: String,
-) {
-    Text(
-        text = text,
-        fontSize = 10.sp,
-        fontStyle = AppealsComposeTheme.typography.smallSmallTableText.fontStyle)
 }
 
 @Composable
@@ -181,6 +214,63 @@ fun TableText(
         text = text,
         textAlign = TextAlign.Center,
         style = style
+    )
+}
+
+@Composable
+fun HyperlinkText(
+    modifier: Modifier = Modifier,
+    fullText: String,
+    linkText: List<String>,
+    linkTextColor: Color = Color.Blue,
+    linkTextFontWeight: FontWeight = FontWeight.Medium,
+    linkTextDecoration: TextDecoration = TextDecoration.Underline,
+    hyperlinks: List<String> = listOf("https://ru.wikipedia.org/wiki/%D0%A4%D0%B0%D0%B9%D0%BB"),
+    fontSize: TextUnit = TextUnit.Unspecified
+) {
+    val annotatedString = buildAnnotatedString {
+        append(fullText)
+        linkText.forEachIndexed { index, link ->
+            val startIndex = fullText.indexOf(link)
+            val endIndex = startIndex + link.length
+            addStyle(
+                style = SpanStyle(
+                    color = linkTextColor,
+                    fontSize = fontSize,
+                    fontWeight = linkTextFontWeight,
+                    textDecoration = linkTextDecoration
+                ),
+                start = startIndex,
+                end = endIndex
+            )
+            addStringAnnotation(
+                tag = "URL",
+                annotation = hyperlinks[index],
+                start = startIndex,
+                end = endIndex
+            )
+        }
+        addStyle(
+            style = SpanStyle(
+                fontSize = fontSize
+            ),
+            start = 0,
+            end = fullText.length
+        )
+    }
+
+    val uriHandler = LocalUriHandler.current
+
+    ClickableText(
+        modifier = modifier,
+        text = annotatedString,
+        onClick = {
+            annotatedString
+                .getStringAnnotations("URL", it, it)
+                .firstOrNull()?.let { stringAnnotation ->
+                    uriHandler.openUri(stringAnnotation.item)
+                }
+        }
     )
 }
 
