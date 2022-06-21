@@ -25,7 +25,6 @@ fun TopAppBarCompose(){
         ){
             TopAppBarTitle()
         }
-
     }
 }
 

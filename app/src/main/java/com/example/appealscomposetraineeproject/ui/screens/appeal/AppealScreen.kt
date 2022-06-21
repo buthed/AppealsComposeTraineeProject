@@ -59,7 +59,6 @@ fun AppealScreen() {
                     modifier = Modifier.fillMaxWidth(),
                     input = textInput,
                     label = stringResource(R.string.appeals_text_of_appeal))
-
                 Box() {
                     Text(
                         modifier = Modifier

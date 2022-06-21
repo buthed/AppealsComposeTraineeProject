@@ -3,26 +3,15 @@ package com.example.appealscomposetraineeproject.ui.screens.history.components
 import android.net.Uri
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.compose.foundation.text.ClickableText
-import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalUriHandler
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.TextUnit
-
-data class LinkTextData(
-    val text: String,
-    val tag: String? = null,
-    val annotation: String? = null,
-    val onClick: ((str: AnnotatedString.Range<String>) -> Unit)? = null,
-)
 
 @Composable
 fun HyperlinkText(
@@ -66,7 +55,6 @@ fun HyperlinkText(
         )
     }
 
-    val uriHandler = LocalUriHandler.current
     val context = LocalContext.current
 
     ClickableText(

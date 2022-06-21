@@ -5,7 +5,9 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.material.*
+import androidx.compose.material.Icon
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -18,7 +20,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.appealscomposetraineeproject.R
 import com.example.appealscomposetraineeproject.ui.theme.AppealsComposeTheme
-
 import com.example.appealscomposetraineeproject.ui.theme.MainTheme
 
 @Composable
@@ -76,7 +77,6 @@ fun SearchField(
         }
     }
 }
-
 
 @Preview(showBackground = true)
 @Composable
