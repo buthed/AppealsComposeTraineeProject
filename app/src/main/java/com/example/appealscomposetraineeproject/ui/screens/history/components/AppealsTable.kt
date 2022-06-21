@@ -78,7 +78,7 @@ fun AppealsTable(data: List<Appeal>) {
 
 @Composable
 fun TableRow(modifier: Modifier = Modifier,
-    data: Appeal) {
+             data: Appeal) {
     Row(
         modifier = modifier,
         Arrangement.SpaceAround,
@@ -214,63 +214,6 @@ fun TableText(
         text = text,
         textAlign = TextAlign.Center,
         style = style
-    )
-}
-
-@Composable
-fun HyperlinkText(
-    modifier: Modifier = Modifier,
-    fullText: String,
-    linkText: List<String>,
-    linkTextColor: Color = Color.Blue,
-    linkTextFontWeight: FontWeight = FontWeight.Medium,
-    linkTextDecoration: TextDecoration = TextDecoration.Underline,
-    hyperlinks: List<String> = listOf("https://ru.wikipedia.org/wiki/%D0%A4%D0%B0%D0%B9%D0%BB"),
-    fontSize: TextUnit = TextUnit.Unspecified
-) {
-    val annotatedString = buildAnnotatedString {
-        append(fullText)
-        linkText.forEachIndexed { index, link ->
-            val startIndex = fullText.indexOf(link)
-            val endIndex = startIndex + link.length
-            addStyle(
-                style = SpanStyle(
-                    color = linkTextColor,
-                    fontSize = fontSize,
-                    fontWeight = linkTextFontWeight,
-                    textDecoration = linkTextDecoration
-                ),
-                start = startIndex,
-                end = endIndex
-            )
-            addStringAnnotation(
-                tag = "URL",
-                annotation = hyperlinks[index],
-                start = startIndex,
-                end = endIndex
-            )
-        }
-        addStyle(
-            style = SpanStyle(
-                fontSize = fontSize
-            ),
-            start = 0,
-            end = fullText.length
-        )
-    }
-
-    val uriHandler = LocalUriHandler.current
-
-    ClickableText(
-        modifier = modifier,
-        text = annotatedString,
-        onClick = {
-            annotatedString
-                .getStringAnnotations("URL", it, it)
-                .firstOrNull()?.let { stringAnnotation ->
-                    uriHandler.openUri(stringAnnotation.item)
-                }
-        }
     )
 }
 
