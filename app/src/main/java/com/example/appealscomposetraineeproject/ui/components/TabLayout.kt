@@ -21,6 +21,7 @@ import com.example.appealscomposetraineeproject.ui.screens.appeal.AppealScreen
 import com.example.appealscomposetraineeproject.ui.screens.history.AppealHistoryScreen
 import com.example.appealscomposetraineeproject.ui.theme.AppealsComposeTheme
 import com.example.appealscomposetraineeproject.ui.theme.MainTheme
+import com.example.appealscomposetraineeproject.viewmodel.MainViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState

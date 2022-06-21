@@ -25,11 +25,13 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.appealscomposetraineeproject.R
 import com.example.appealscomposetraineeproject.model.entities.Appeal
 import com.example.appealscomposetraineeproject.model.entities.getAppeals
 import com.example.appealscomposetraineeproject.ui.theme.AppealsComposeTheme
 import com.example.appealscomposetraineeproject.ui.theme.MainTheme
+import com.example.appealscomposetraineeproject.viewmodel.MainViewModel
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -166,13 +168,20 @@ fun AdditionalTitleTable(
 }
 
 @Composable
-fun ColumnHeader(modifier: Modifier = Modifier){
+fun ColumnHeader(
+    modifier: Modifier = Modifier,
+    model: MainViewModel = viewModel()
+){
     Row(
         modifier = modifier,
         Arrangement.SpaceAround,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        TableTextColumnName(Modifier.weight(1f),stringResource(R.string.ah_date))
+        TableTextColumnName(Modifier.weight(1f).clickable{
+            model.isIncrease = !model.isIncrease
+
+            Log.d("click", model.isIncrease.toString())
+        },stringResource(R.string.ah_date))
         TableTextColumnName(Modifier.weight(1f),stringResource(R.string.ah_number))
         TableTextColumnName(Modifier.weight(1f),stringResource(R.string.ah_themes))
         TableTextColumnName(Modifier.weight(1f),stringResource(R.string.ah_status))
