@@ -45,7 +45,13 @@ fun AppealHistoryScreen(model: MainViewModel = viewModel()) {
                         .fillMaxWidth()
                         .height(31.dp)
                         .padding(horizontal = 46.dp),
-                    input = search,)
+                    input = search,
+                    onValueChange = { onQueryChanged ->
+                        search = onQueryChanged
+                        if (onQueryChanged.isNotEmpty()) {
+                            data = model.search(onQueryChanged, data)
+                        }
+                    })
                 Spacer(modifier = Modifier.height(35.dp))
                 AppealsTable(data)
             }

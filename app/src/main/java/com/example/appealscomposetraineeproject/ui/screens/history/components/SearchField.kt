@@ -1,6 +1,7 @@
 package com.example.appealscomposetraineeproject.ui.screens.history.components
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -25,7 +26,9 @@ import com.example.appealscomposetraineeproject.ui.theme.MainTheme
 @Composable
 fun SearchField(
     modifier: Modifier = Modifier,
-    input: String
+    input: String,
+    onValueChange: (String) -> Unit,
+    iconModifier: Modifier = Modifier
 ) {
     var search by remember { mutableStateOf(input) }
 
@@ -47,11 +50,12 @@ fun SearchField(
                     .weight(6f)
                     .padding(vertical = 7.dp),
                 value = search,
-                onValueChange = { search = it },
+                onValueChange = onValueChange,
                 textStyle = TextStyle(
                     fontSize = 12.sp,
                     lineHeight = 14.sp,
                 ),
+                singleLine = true,
                 decorationBox = {innerTextField ->
                         if (search.isEmpty()) {
                             Row() {
@@ -87,6 +91,8 @@ fun DefaultPreviewSearchField() {
             .fillMaxWidth()
             .height(31.dp)
             .padding(horizontal = 46.dp),
-            input = search,)
+            input = search,
+            onValueChange = {search = it }
+            )
     }
 }
