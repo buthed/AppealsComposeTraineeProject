@@ -118,12 +118,13 @@ fun TableAdditionalInfo(
             }
             Spacer(Modifier.height(25.dp))
             Box(){
-                Row(Modifier.padding(start = 17.dp)) {
+                Row(
+                    modifier = Modifier.padding(start = 17.dp),
+                    verticalAlignment = Alignment.CenterVertically) {
                     AdditionalTitleTable(
                         modifier = Modifier.weight(2f),
                         text = stringResource(R.string.ah_attached_files))
                     data.attachments.forEach() { item ->
-//                        val context = LocalContext.current
 
                     Box(
                         modifier = Modifier.weight(1f).clickable {
@@ -142,13 +143,6 @@ fun TableAdditionalInfo(
                             text = stringResource(R.string.ah_pdf),
                             fontSize = 10.sp
                             )
-//                            HyperlinkText(
-//                                modifier = Modifier.width(20.dp),
-//                                fullText = stringResource(R.string.ah_pdf),
-//                                linkText = listOf(stringResource(R.string.ah_pdf)),
-//                                fontSize = 10.sp,
-//                                hyperlinks = listOf(item)
-//                            )
                         }
                     }
                     HyperlinkText(
