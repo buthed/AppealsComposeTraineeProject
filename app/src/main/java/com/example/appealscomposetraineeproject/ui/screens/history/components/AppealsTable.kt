@@ -1,6 +1,8 @@
 package com.example.appealscomposetraineeproject.ui.screens.history.components
 
+import android.net.Uri
 import android.util.Log
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -10,11 +12,14 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Divider
+import androidx.compose.material.Icon
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -90,6 +95,7 @@ fun TableAdditionalInfo(
     data: Appeal
 ) {
     Surface(Modifier.fillMaxWidth()) {
+        val context = LocalContext.current
         Column(Modifier.fillMaxWidth()) {
             Row(
                 Modifier
@@ -116,11 +122,40 @@ fun TableAdditionalInfo(
                     AdditionalTitleTable(
                         modifier = Modifier.weight(2f),
                         text = stringResource(R.string.ah_attached_files))
+                    data.attachments.forEach() { item ->
+//                        val context = LocalContext.current
+
+                    Box(
+                        modifier = Modifier.weight(1f).clickable {
+                            val builder = CustomTabsIntent.Builder()
+                            val customTabsIntent = builder.build()
+                            customTabsIntent.launchUrl(context, Uri.parse(item))
+                        },
+                        contentAlignment = Alignment.Center
+                    ) {
+                            Icon(
+                                tint = AppealsComposeTheme.colors.GrayLabel,
+                                painter = painterResource(R.drawable.icon_pdf),
+                                contentDescription = "1"
+                            )
+                            Text(
+                            text = stringResource(R.string.ah_pdf),
+                            fontSize = 10.sp
+                            )
+//                            HyperlinkText(
+//                                modifier = Modifier.width(20.dp),
+//                                fullText = stringResource(R.string.ah_pdf),
+//                                linkText = listOf(stringResource(R.string.ah_pdf)),
+//                                fontSize = 10.sp,
+//                                hyperlinks = listOf(item)
+//                            )
+                        }
+                    }
                     HyperlinkText(
                         modifier = Modifier.weight(3f),
                         fullText = stringResource(R.string.ah_attached_files_link),
                         linkText = listOf(stringResource(R.string.ah_attached_files_link)),
-                        hyperlinks = listOf("https://ru.wikipedia.org/wiki/%D0%A4%D0%B0%D0%B9%D0%BB"),
+                        hyperlinks = listOf(stringResource(R.string.ah_link)),
                         fontSize = 10.sp
                     )
                 }
@@ -177,11 +212,14 @@ fun ColumnHeader(
         Arrangement.SpaceAround,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        TableTextColumnName(Modifier.weight(1f).clickable{
-            model.isIncrease = !model.isIncrease
+        TableTextColumnName(
+            Modifier
+                .weight(1f)
+                .clickable {
+                    model.isIncrease = !model.isIncrease
 
-            Log.d("click", model.isIncrease.toString())
-        },stringResource(R.string.ah_date))
+                    Log.d("click", model.isIncrease.toString())
+                },stringResource(R.string.ah_date))
         TableTextColumnName(Modifier.weight(1f),stringResource(R.string.ah_number))
         TableTextColumnName(Modifier.weight(1f),stringResource(R.string.ah_themes))
         TableTextColumnName(Modifier.weight(1f),stringResource(R.string.ah_status))
@@ -228,9 +266,11 @@ fun DefaultPreviewAppealsTable() {
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreviewTableRowAdditionalInfo() {
-    val data = Appeal("22.03.2021",15203, "Передача показателей", "wait", "В квитанции за январь у меня не правильно отражаются показания, последний раз\n" +
+    val data =  Appeal("22.03.2021",15203, "Передача показателей", "wait", "В квитанции за январь у меня не правильно отражаются показания, последний раз\n" +
             "я передавал показания 20.01.2021 года 5516, а в квитанции 5550. Прошу Вас разобраться в данной ситуации.","В квитанции за январь у меня не правильно отражаются показания, последний раз\n" +
-            "я передавал показания 20.01.2021 года 5516, а в квитанции 5550. Прошу Вас разобраться в данной ситуации.")
+            "я передавал показания 20.01.2021 года 5516, а в квитанции 5550. Прошу Вас разобраться в данной ситуации.",
+        listOf("chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://google-developer-training.github.io/android-developer-fundamentals-course-concepts/en/android-developer-fundamentals-course-concepts-en.pdf",
+            "chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://google-developer-training.github.io/android-developer-fundamentals-course-concepts/en/android-developer-fundamentals-course-concepts-en.pdf",))
     MainTheme {
         TableAdditionalInfo(
             Modifier.fillMaxWidth(),

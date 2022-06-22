@@ -1,5 +1,6 @@
 package com.example.appealscomposetraineeproject.model.repository
 
+import android.util.Log
 import com.example.appealscomposetraineeproject.model.entities.Appeal
 
 class RepositoryImpl: Repository {
@@ -26,5 +27,7 @@ class RepositoryImpl: Repository {
         return result
     }
 
-
+    override fun newAppeal() {
+        //TODO
+    }
 }

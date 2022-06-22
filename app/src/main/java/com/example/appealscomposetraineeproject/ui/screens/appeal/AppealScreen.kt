@@ -1,5 +1,6 @@
 package com.example.appealscomposetraineeproject.ui.screens.appeal
 
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -34,30 +35,38 @@ fun AppealScreen() {
             Column{
                 AppealDropDownMenu(
                     modifier = Modifier.fillMaxWidth(),
+                    input = themeInput,
+                    { themeInput = it},
                     label = stringResource(R.string.appeals_theme))
                 CustomTextField(
                     modifier = Modifier.fillMaxWidth(),
                     input = accountNumberInput,
+                    {accountNumberInput =it},
                     label = stringResource(R.string.appeals_account_number))
                 CustomTextField(
                     modifier = Modifier.fillMaxWidth(),
                     input = fullNameInput,
+                    {fullNameInput =it},
                     label = stringResource(R.string.appeals_initials))
                 CustomTextField(
                     modifier = Modifier.fillMaxWidth(),
                     input = addressInput,
+                    {addressInput =it},
                     label = stringResource(R.string.appeals_address))
                 CustomTextField(
                     modifier = Modifier.fillMaxWidth(),
                     input = phoneNumberInput,
+                    {phoneNumberInput =it},
                     label = stringResource(R.string.appeals_phone))
                 CustomTextField(
                     modifier = Modifier.fillMaxWidth(),
                     input = emailInput,
+                    {emailInput =it},
                     label = stringResource(R.string.appeals_email))
                 CustomTextField(
                     modifier = Modifier.fillMaxWidth(),
                     input = textInput,
+                    {textInput =it},
                     label = stringResource(R.string.appeals_text_of_appeal))
                 Box() {
                     Text(
@@ -70,8 +79,19 @@ fun AppealScreen() {
                     )
                 }
                 Button(
-                    onClick = { /*TODO*/ },
-                    modifier = Modifier.fillMaxWidth().height(50.dp),
+                    onClick = {
+                              Log.d("click",
+                                  themeInput+" " +
+                                 accountNumberInput+" "+
+                                    fullNameInput+" "+
+                                    addressInput+" "+
+                                    phoneNumberInput+" "+
+                                    emailInput+" "+
+                                    textInput+" ")
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(50.dp),
                     colors = ButtonDefaults.buttonColors(
                         backgroundColor = AppealsComposeTheme.colors.Blue,
                         contentColor = Color.White,

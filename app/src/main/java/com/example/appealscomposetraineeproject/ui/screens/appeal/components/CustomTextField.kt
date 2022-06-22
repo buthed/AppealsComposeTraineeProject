@@ -23,6 +23,7 @@ fun CustomTextFieldTest() {
         modifier = Modifier.padding(30.dp),
         label = "Test label",
         input = input,
+        onValueChange = {input = it}
     )
 }
 
@@ -32,6 +33,7 @@ fun CustomTextField(
         .fillMaxWidth()
         .height(50.dp),
     input: String,
+    onValueChange: (String) -> Unit,
     label: String,
 ) {
     var inputs by remember { mutableStateOf(input) }
@@ -39,7 +41,7 @@ fun CustomTextField(
     TextField(
         modifier = modifier,
         value = inputs,
-        onValueChange = { inputs = it},
+        onValueChange = onValueChange,
         label = { Text(label) },
         colors = TextFieldDefaults.textFieldColors(
             backgroundColor = AppealsComposeTheme.colors.Background,
@@ -55,7 +57,9 @@ fun CustomTextField(
 fun AppealDropDownMenu(modifier: Modifier = Modifier
     .fillMaxWidth()
     .height(50.dp),
-   label: String
+    input: String,
+    onValueChange: (String) -> Unit,
+    label: String
 ) {
     val options  = listOf(
         stringResource(R.string.at_testimony),
@@ -122,9 +126,14 @@ fun DefaultPreviewCustomTextFieldTest() {
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreviewAppealDropDownMenu() {
+    var themeInput by remember { mutableStateOf("") }
+
     MainTheme {
         AppealDropDownMenu(
             modifier = Modifier.fillMaxWidth(),
-            label = stringResource(R.string.appeals_theme))
+            input = themeInput,
+            onValueChange = {themeInput = it},
+            label = stringResource(R.string.appeals_theme)
+        )
     }
 }

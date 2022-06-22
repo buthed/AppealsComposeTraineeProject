@@ -29,7 +29,6 @@ fun AppealHistoryScreen(model: MainViewModel = viewModel()) {
 //    var data: List<Appeal> = model.getAppeals() //TODO перегружается память
 
     data = model.sortByDate(data,model.isIncrease)
-    //TODO Сортировка работает, осталось отловить клик и сменить тип даты
 
 
     Scaffold(Modifier.fillMaxSize()) {
@@ -55,7 +54,7 @@ fun AppealHistoryScreen(model: MainViewModel = viewModel()) {
                     },
                     iconModifier = Modifier.clickable{
                             search = ""
-                            data = getAppeals() //TODO
+                            data = getAppeals() //TODO через вью модел вылетает ошибка по памяти
                     })
                 Spacer(modifier = Modifier.height(35.dp))
                 AppealsTable(data)

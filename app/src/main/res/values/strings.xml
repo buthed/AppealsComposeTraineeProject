@@ -16,6 +16,8 @@
     <string name="appeals_attach_files">Приложить файлы</string>
     <string name="appeals_sent_button">Отправить обращение</string>
 
+    <!-- Appeals content description (appeals_cd_*) -->
+
 
     <!--     Appeals history (ah_*)  -->
     <string name="ah_title">История обращений</string>
@@ -29,9 +31,17 @@
     <string name="ah_text_of_answer">Текст ответа</string>
     <string name="ah_attached_files">Вложенные файлы</string>
     <string name="ah_attached_files_link">Ссылка на файлы</string>
+    <string name="ah_pdf">PDF</string>
+    <string name="ah_link">https://ru.wikipedia.org/wiki/%D0%A4%D0%B0%D0%B9%D0%BB</string>
+
+    <!--     Appeals history content description (ah_cd_*)  -->
+    <string name="ah_cd_search">Поиск</string>
+    <string name="ah_cd_clear_text">Стереть</string>
 
     <!-- Appeals themes (at_*) -->
     <string name="at_testimony">Передача показаний</string>
     <string name="at_debt">Задолженность</string>
     <string name="at_accrual_ODN">Начисление ОДН</string>
+
+    <!-- Appeals themes (at_*) -->
 </resources>

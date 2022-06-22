@@ -37,10 +37,14 @@ fun SearchField(
         border = BorderStroke(2.dp, AppealsComposeTheme.colors.Gray),
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Box(Modifier.size(16.dp).weight(1f).padding(start = 14.dp)) {
+            Box(
+                Modifier
+                    .size(16.dp)
+                    .weight(1f)
+                    .padding(start = 14.dp)) {
                 Icon(
                     painterResource(id = R.drawable.icon_search),
-                    contentDescription = "Search",
+                    contentDescription = stringResource(id = R.string.ah_cd_search),
                     tint = AppealsComposeTheme.colors.GrayLabel)
             }
             BasicTextField(
@@ -68,13 +72,16 @@ fun SearchField(
                             }
                         } else {
                             Box(
-                                modifier = Modifier.size(14.dp).weight(1f).padding(end = 14.dp),
+                                modifier = Modifier
+                                    .size(14.dp)
+                                    .weight(1f)
+                                    .padding(end = 14.dp),
                                 contentAlignment = Alignment.CenterEnd
                             ) {
                                 Icon(
                                     painterResource(id = R.drawable.icon_clear),
                                     modifier = iconModifier,
-                                    contentDescription = "Search")
+                                    contentDescription = stringResource(R.string.ah_cd_clear_text))
                             }
                         }
                     innerTextField()
