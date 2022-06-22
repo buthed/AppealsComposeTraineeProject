@@ -1,5 +1,6 @@
 package com.example.appealscomposetraineeproject.ui.screens.history
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
@@ -51,6 +52,10 @@ fun AppealHistoryScreen(model: MainViewModel = viewModel()) {
                         if (onQueryChanged.isNotEmpty()) {
                             data = model.search(onQueryChanged, data)
                         }
+                    },
+                    iconModifier = Modifier.clickable{
+                            search = ""
+                            data = getAppeals() //TODO
                     })
                 Spacer(modifier = Modifier.height(35.dp))
                 AppealsTable(data)

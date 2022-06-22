@@ -30,7 +30,6 @@ fun SearchField(
     onValueChange: (String) -> Unit,
     iconModifier: Modifier = Modifier
 ) {
-    var search by remember { mutableStateOf(input) }
 
     Surface(
         modifier = modifier,
@@ -49,7 +48,7 @@ fun SearchField(
                     .fillMaxSize()
                     .weight(6f)
                     .padding(vertical = 7.dp),
-                value = search,
+                value = input,
                 onValueChange = onValueChange,
                 textStyle = TextStyle(
                     fontSize = 12.sp,
@@ -57,7 +56,7 @@ fun SearchField(
                 ),
                 singleLine = true,
                 decorationBox = {innerTextField ->
-                        if (search.isEmpty()) {
+                        if (input.isEmpty()) {
                             Row() {
                                 Text(
                                     modifier = Modifier.fillMaxSize(),
@@ -72,7 +71,10 @@ fun SearchField(
                                 modifier = Modifier.size(14.dp).weight(1f).padding(end = 14.dp),
                                 contentAlignment = Alignment.CenterEnd
                             ) {
-                                Icon(painterResource(id = R.drawable.icon_clear), contentDescription = "Search")
+                                Icon(
+                                    painterResource(id = R.drawable.icon_clear),
+                                    modifier = iconModifier,
+                                    contentDescription = "Search")
                             }
                         }
                     innerTextField()

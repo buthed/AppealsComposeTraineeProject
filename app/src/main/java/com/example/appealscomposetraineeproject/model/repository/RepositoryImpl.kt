@@ -16,8 +16,9 @@ class RepositoryImpl: Repository {
         result.clear()
         for (item in list) {
             if (
-                item.theme.contains(input) ||
+                item.theme.lowercase().contains(input.lowercase()) ||
                 item.status.contains(input) ||
+                item.number.toString().contains(input) ||
                 item.answerForAppeal.contains(input) ||
                 item.textOfAppeal.contains(input)
             ) result.add(item)
