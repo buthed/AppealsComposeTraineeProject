@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.*
 import com.example.appealscomposetraineeproject.model.entities.Appeal
+import com.example.appealscomposetraineeproject.model.entities.SortAttributes
 import com.example.appealscomposetraineeproject.model.repository.Repository
 import com.example.appealscomposetraineeproject.model.repository.RepositoryImpl
 
@@ -16,14 +17,14 @@ class MainViewModel(): ViewModel() {
     val appeals: LiveData<List<Appeal>> = appealLiveData
 
     var isIncrease by mutableStateOf(true)
-    
+
     fun getAppeals() {
         appealLiveData.value = repository.getAppeals()
     }
 
     fun search(input: String) {
         val data = appealLiveData.value as MutableList<Appeal>
-        var result: MutableList<Appeal> = listOf<Appeal>().toMutableList()
+        val result: MutableList<Appeal> = listOf<Appeal>().toMutableList()
         result.clear()
         for (item in data) {
             if (
@@ -37,13 +38,27 @@ class MainViewModel(): ViewModel() {
         appealLiveData.value = result
     }
 
-    fun sortByDate() {
+    fun sortByDate(column: String) {
         val data = appealLiveData.value
         var result: MutableList<Appeal> = listOf<Appeal>().toMutableList()
+
         if (data != null) {
-            if (isIncrease) {
-                result = data.sortedBy { it.date }.toMutableList()
-            } else result = data.sortedByDescending { it.date }.toMutableList()
+            if (SortAttributes.DATE.name.equals(column)) {
+                result = if (isIncrease) { data.sortedBy { it.date }.toMutableList()
+                } else data.sortedByDescending { it.date }.toMutableList()
+            }
+            else if (SortAttributes.NUMBER.name.equals(column)) {
+                result = if (isIncrease) { data.sortedBy { it.number }.toMutableList()
+                } else data.sortedByDescending { it.number }.toMutableList()
+            }
+            else if (SortAttributes.THEME.name.equals(column)) {
+                result = if (isIncrease) { data.sortedBy { it.theme }.toMutableList()
+                } else data.sortedByDescending { it.theme }.toMutableList()
+            }
+            else if (SortAttributes.STATUS.name.equals(column)) {
+                result = if (isIncrease) { data.sortedBy { it.status }.toMutableList()
+                } else data.sortedByDescending { it.status }.toMutableList()
+            }
 
             appealLiveData.value = result
         }

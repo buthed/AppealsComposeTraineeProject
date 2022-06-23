@@ -213,12 +213,33 @@ fun ColumnHeader(
                 .weight(1f)
                 .clickable {
                     model.isIncrease = !model.isIncrease
-                    model.sortByDate()
+                    model.sortByDate("DATE")
                     Log.d("click", model.isIncrease.toString())
                 },stringResource(R.string.ah_date))
-        TableTextColumnName(Modifier.weight(1f),stringResource(R.string.ah_number))
-        TableTextColumnName(Modifier.weight(1f),stringResource(R.string.ah_themes))
-        TableTextColumnName(Modifier.weight(1f),stringResource(R.string.ah_status))
+        TableTextColumnName(
+            Modifier
+                .weight(1f)
+                .clickable {
+                    model.isIncrease = !model.isIncrease
+                    model.sortByDate("NUMBER")
+                    Log.d("click", model.isIncrease.toString())
+                },stringResource(R.string.ah_number))
+        TableTextColumnName(
+            Modifier
+                .weight(1f)
+                .clickable {
+                    model.isIncrease = !model.isIncrease
+                    model.sortByDate("THEME")
+                    Log.d("click", model.isIncrease.toString())
+                },stringResource(R.string.ah_themes))
+        TableTextColumnName(
+            Modifier
+                .weight(1f)
+                .clickable {
+                    model.isIncrease = !model.isIncrease
+                    model.sortByDate("STATUS")
+                    Log.d("click", model.isIncrease.toString())
+                },stringResource(R.string.ah_status))
     }
 }
 
