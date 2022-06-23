@@ -7,31 +7,24 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.appealscomposetraineeproject.model.AppStateAppeals
 import com.example.appealscomposetraineeproject.model.entities.Appeal
-import com.example.appealscomposetraineeproject.model.entities.getAppeals
-import com.example.appealscomposetraineeproject.model.repository.Repository
-import com.example.appealscomposetraineeproject.model.repository.RepositoryImpl
 import com.example.appealscomposetraineeproject.ui.screens.history.components.AppealsTable
 import com.example.appealscomposetraineeproject.ui.screens.history.components.SearchField
 import com.example.appealscomposetraineeproject.ui.theme.MainTheme
 import com.example.appealscomposetraineeproject.viewmodel.MainViewModel
 
 @Composable
-fun AppealHistoryScreen(model: MainViewModel = viewModel()) {
-    var data: List<Appeal> = getAppeals()
+fun AppealHistoryScreen(model: MainViewModel) {
 
-//    var data: List<Appeal> = model.getAppeals() //TODO перегружается память
+    val appealsData: State<List<Appeal>> = model.appeals.observeAsState(listOf())
 
-    data = model.sortByDate(data)
+    model.getAppeals()
 
-
-    Scaffold(Modifier.fillMaxSize()) {
+    Scaffold(Modifier.fillMaxSize()) { padding ->
         Surface(Modifier.fillMaxWidth()) {
             var search by remember { mutableStateOf("") }
 
@@ -49,15 +42,15 @@ fun AppealHistoryScreen(model: MainViewModel = viewModel()) {
                     onValueChange = { onQueryChanged ->
                         search = onQueryChanged
                         if (onQueryChanged.isNotEmpty()) {
-                            data = model.search(onQueryChanged, data)
+                            model.search(onQueryChanged)
                         }
                     },
                     iconModifier = Modifier.clickable{
-                            search = ""
-                            data = getAppeals() //TODO через вью модел вылетает ошибка по памяти
+                        search = ""
+                        model.getAppeals()
                     })
                 Spacer(modifier = Modifier.height(35.dp))
-                AppealsTable(data)
+                AppealsTable(appealsData.value, model)
             }
         }
     }
@@ -67,6 +60,6 @@ fun AppealHistoryScreen(model: MainViewModel = viewModel()) {
 @Composable
 fun DefaultPreviewAppealHistoryScreen() {
     MainTheme {
-        AppealHistoryScreen()
+        AppealHistoryScreen(viewModel())
     }
 }

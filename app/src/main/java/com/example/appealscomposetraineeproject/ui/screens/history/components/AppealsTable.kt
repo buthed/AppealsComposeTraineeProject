@@ -33,16 +33,16 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.appealscomposetraineeproject.R
 import com.example.appealscomposetraineeproject.model.entities.Appeal
-import com.example.appealscomposetraineeproject.model.entities.getAppeals
+import com.example.appealscomposetraineeproject.model.entities.getAppealsLocal
 import com.example.appealscomposetraineeproject.ui.theme.AppealsComposeTheme
 import com.example.appealscomposetraineeproject.ui.theme.MainTheme
 import com.example.appealscomposetraineeproject.viewmodel.MainViewModel
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun AppealsTable(data: List<Appeal>) {
+fun AppealsTable(data: List<Appeal>, model: MainViewModel) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        ColumnHeader(Modifier.height(35.dp))
+        ColumnHeader(Modifier.height(35.dp), model)
         Divider(color = AppealsComposeTheme.colors.GraySpaces, thickness = 2.dp)
         LazyColumn{
             items(data) { data ->
@@ -126,22 +126,24 @@ fun TableAdditionalInfo(
                         text = stringResource(R.string.ah_attached_files))
                     data.attachments.forEach() { item ->
 
-                    Box(
-                        modifier = Modifier.weight(1f).clickable {
-                            val builder = CustomTabsIntent.Builder()
-                            val customTabsIntent = builder.build()
-                            customTabsIntent.launchUrl(context, Uri.parse(item))
-                        },
-                        contentAlignment = Alignment.Center
-                    ) {
+                        Box(
+                            modifier = Modifier
+                                .weight(1f)
+                                .clickable {
+                                    val builder = CustomTabsIntent.Builder()
+                                    val customTabsIntent = builder.build()
+                                    customTabsIntent.launchUrl(context, Uri.parse(item))
+                                },
+                            contentAlignment = Alignment.Center
+                        ) {
                             Icon(
                                 tint = AppealsComposeTheme.colors.GrayLabel,
                                 painter = painterResource(R.drawable.icon_pdf),
                                 contentDescription = "1"
                             )
                             Text(
-                            text = stringResource(R.string.ah_pdf),
-                            fontSize = 10.sp
+                                text = stringResource(R.string.ah_pdf),
+                                fontSize = 10.sp
                             )
                         }
                     }
@@ -199,7 +201,7 @@ fun AdditionalTitleTable(
 @Composable
 fun ColumnHeader(
     modifier: Modifier = Modifier,
-    model: MainViewModel = viewModel()
+    model: MainViewModel
 ){
     Row(
         modifier = modifier,
@@ -211,7 +213,7 @@ fun ColumnHeader(
                 .weight(1f)
                 .clickable {
                     model.isIncrease = !model.isIncrease
-
+                    model.sortByDate()
                     Log.d("click", model.isIncrease.toString())
                 },stringResource(R.string.ah_date))
         TableTextColumnName(Modifier.weight(1f),stringResource(R.string.ah_number))
@@ -251,9 +253,10 @@ fun TableText(
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreviewAppealsTable() {
-    val data = getAppeals()
+    val data = getAppealsLocal()
+    val model: MainViewModel = viewModel()
     MainTheme {
-        AppealsTable(data)
+        AppealsTable(data, model)
     }
 }
 

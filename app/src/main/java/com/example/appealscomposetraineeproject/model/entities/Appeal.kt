@@ -1,5 +1,8 @@
 package com.example.appealscomposetraineeproject.model.entities
 
+import androidx.compose.runtime.State
+import androidx.lifecycle.MutableLiveData
+
 data class Appeal(
     val date: String,
     val number: Int,
@@ -10,7 +13,7 @@ data class Appeal(
     val attachments: List<String>
 )
 
-fun getAppeals() = listOf(
+fun getAppealsLocal(): List<Appeal> = listOf(
     Appeal("22.03.2021",15203, "Передача показателей", "wait", "В квитанции за январь у меня не правильно отражаются показания, последний раз\n" +
             "я передавал показания 20.01.2021 года 5516, а в квитанции 5550. Прошу Вас разобраться в данной ситуации.","В квитанции за январь у меня не правильно отражаются показания, последний раз\n" +
             "я передавал показания 20.01.2021 года 5516, а в квитанции 5550. Прошу Вас разобраться в данной ситуации.",
@@ -28,5 +31,4 @@ fun getAppeals() = listOf(
             "я передавал показания 20.01.2021 года 5516, а в квитанции 5550. Прошу Вас разобраться в данной ситуации.","В квитанции за январь у меня не правильно отражаются показания, последний раз\n" +
             "я передавал показания 20.01.2021 года 5516, а в квитанции 5550. Прошу Вас разобраться в данной ситуации.",
         listOf("https://google-developer-training.github.io/android-developer-fundamentals-course-concepts/en/android-developer-fundamentals-course-concepts-en.pdf",)),
-
 )

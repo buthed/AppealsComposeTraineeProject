@@ -3,37 +3,27 @@ package com.example.appealscomposetraineeproject.viewmodel
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.example.appealscomposetraineeproject.model.AppStateAppeals
+import androidx.lifecycle.*
 import com.example.appealscomposetraineeproject.model.entities.Appeal
 import com.example.appealscomposetraineeproject.model.repository.Repository
 import com.example.appealscomposetraineeproject.model.repository.RepositoryImpl
 
 
 class MainViewModel(): ViewModel() {
-    val repository: Repository = RepositoryImpl()
 
-    val liveDataObserver : MutableLiveData<AppStateAppeals> = MutableLiveData()
-
+    private val repository: Repository = RepositoryImpl()
+    private var appealLiveData = MutableLiveData<List<Appeal>>()
+    val appeals: LiveData<List<Appeal>> = appealLiveData
 
     var isIncrease by mutableStateOf(true)
-
-    fun getLiveData() = liveDataObserver
-
-    fun getAppeals(): List<Appeal> {
-        return repository.getAppeals()
+    
+    fun getAppeals() {
+        appealLiveData.value = repository.getAppeals()
     }
 
-    fun sortByDate(data: List<Appeal>): List<Appeal> {
-        return if (isIncrease) { data.sortedBy { it.date }
-        } else { data.sortedByDescending { it.date } }
-    }
-
-    fun search(input: String, data: List<Appeal>): List<Appeal> {
-        var result: MutableList<Appeal> = data.toMutableList()
+    fun search(input: String) {
+        val data = appealLiveData.value as MutableList<Appeal>
+        var result: MutableList<Appeal> = listOf<Appeal>().toMutableList()
         result.clear()
         for (item in data) {
             if (
@@ -44,7 +34,18 @@ class MainViewModel(): ViewModel() {
                 item.textOfAppeal.contains(input)
             ) result.add(item)
         }
-        return result
+        appealLiveData.value = result
     }
 
+    fun sortByDate() {
+        val data = appealLiveData.value
+        var result: MutableList<Appeal> = listOf<Appeal>().toMutableList()
+        if (data != null) {
+            if (isIncrease) {
+                result = data.sortedBy { it.date }.toMutableList()
+            } else result = data.sortedByDescending { it.date }.toMutableList()
+
+            appealLiveData.value = result
+        }
+    }
 }

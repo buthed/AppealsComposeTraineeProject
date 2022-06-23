@@ -21,9 +21,9 @@ fun AppealScreen() {
     Scaffold(
         Modifier
             .fillMaxSize()
-            .padding(horizontal = 10.dp, vertical = 40.dp)) {
+            .padding(horizontal = 10.dp, vertical = 40.dp)) { padding ->
 
-        Surface(Modifier.fillMaxWidth()) {
+        Surface(Modifier.fillMaxWidth().padding(padding)) {
             var themeInput by remember { mutableStateOf("") }
             var accountNumberInput by remember { mutableStateOf("") }
             var fullNameInput by remember { mutableStateOf("") }
@@ -80,9 +80,9 @@ fun AppealScreen() {
                 }
                 Button(
                     onClick = {
-                              Log.d("click",
-                                  themeInput+" " +
-                                 accountNumberInput+" "+
+                        Log.d("click",
+                            themeInput+" " +
+                                    accountNumberInput+" "+
                                     fullNameInput+" "+
                                     addressInput+" "+
                                     phoneNumberInput+" "+
@@ -97,7 +97,7 @@ fun AppealScreen() {
                         contentColor = Color.White,
                         disabledContentColor = AppealsComposeTheme.colors.GrayLabel,
 
-                    )
+                        )
                 ) {
                     Text(text = stringResource(R.string.appeals_sent_button))
                 }
