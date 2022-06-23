@@ -28,7 +28,7 @@ fun AppealHistoryScreen(model: MainViewModel = viewModel()) {
 
 //    var data: List<Appeal> = model.getAppeals() //TODO перегружается память
 
-    data = model.sortByDate(data,model.isIncrease)
+    data = model.sortByDate(data)
 
 
     Scaffold(Modifier.fillMaxSize()) {
