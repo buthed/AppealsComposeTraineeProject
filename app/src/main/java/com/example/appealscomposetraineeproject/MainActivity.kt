@@ -1,49 +1,40 @@
 package com.example.appealscomposetraineeproject
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Column
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.appealscomposetraineeproject.ui.components.CustomTabLayout
-import com.example.appealscomposetraineeproject.ui.components.PagerContent
-import com.example.appealscomposetraineeproject.ui.theme.MainTheme
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.rememberPagerState
+import androidx.appcompat.app.AppCompatActivity
+import com.example.appealscomposetraineeproject.ui.MainFragment
 
-@OptIn(ExperimentalPagerApi::class)
-class MainActivity : ComponentActivity() {
+
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            Scaffold {
-                MainScreen()
-            }
+        setContentView(R.layout.main_activity)
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.container, MainFragment.newInstance())
+                .commitNow()
         }
     }
 }
 
-@OptIn(ExperimentalPagerApi::class)
-@Composable
-fun MainScreen() {
-    Surface {
-        val pagerState = rememberPagerState(2)
-
-        Column {
-            TopAppBarCompose()
-            CustomTabLayout(pagerState)
-            PagerContent(pagerState = pagerState)
-        }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    MainTheme {
-        MainScreen()
-    }
-}
+//@OptIn(ExperimentalPagerApi::class)
+//@Composable
+//fun MainScreen() {
+//    Surface {
+//        val pagerState = rememberPagerState(2)
+//
+//        Column {
+//            TopAppBarCompose()
+//            CustomTabLayout(pagerState)
+//            PagerContent(pagerState = pagerState)
+//        }
+//    }
+//}
+//
+//@Preview(showBackground = true)
+//@Composable
+//fun DefaultPreview() {
+//    MainTheme {
+//        MainScreen()
+//    }
+//}

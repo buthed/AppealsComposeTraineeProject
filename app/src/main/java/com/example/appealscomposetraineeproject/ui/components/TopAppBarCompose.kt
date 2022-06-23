@@ -16,7 +16,7 @@ import com.example.appealscomposetraineeproject.ui.theme.AppealsComposeTheme
 import com.example.appealscomposetraineeproject.ui.theme.MainTheme
 
 @Composable
-fun TopAppBarCompose(){
+fun TopAppBarCompose(){ //TODO переиспользовать во фрагменте?
     Box(Modifier.height(70.dp)) {
         TopAppBarButton()
         Box(
