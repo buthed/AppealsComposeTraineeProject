@@ -42,9 +42,9 @@ import com.example.appealscomposetraineeproject.viewmodel.MainViewModel
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun AppealsTable(data: List<Appeal>, model: MainViewModel) {
+fun AppealsTable(data: List<Appeal>, callback: AppealHistoryScreenCallback) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        ColumnHeader(Modifier.height(35.dp), model)
+        ColumnHeader(Modifier.height(35.dp), callback)
         Divider(color = AppealsComposeTheme.colors.GraySpaces, thickness = 2.dp)
         LazyColumn{
             items(data) { data ->
@@ -203,7 +203,7 @@ fun AdditionalTitleTable(
 @Composable
 fun ColumnHeader(
     modifier: Modifier = Modifier,
-    model: MainViewModel
+    callback: AppealHistoryScreenCallback
 ){
     Row(
         modifier = modifier,
@@ -214,33 +214,25 @@ fun ColumnHeader(
             Modifier
                 .weight(1f)
                 .clickable {
-                    model.isIncrease = !model.isIncrease
-                    model.sortByDate(SortAttributes.DATE)
-                    Log.d("click", model.isIncrease.toString())
+                    callback.onSort(SortAttributes.DATE)
                 },stringResource(R.string.ah_date))
         TableTextColumnName(
             Modifier
                 .weight(1f)
                 .clickable {
-                    model.isIncrease = !model.isIncrease
-                    model.sortByDate(SortAttributes.NUMBER)
-                    Log.d("click", model.isIncrease.toString())
+                    callback.onSort(SortAttributes.NUMBER)
                 },stringResource(R.string.ah_number))
         TableTextColumnName(
             Modifier
                 .weight(1f)
                 .clickable {
-                    model.isIncrease = !model.isIncrease
-                    model.sortByDate(SortAttributes.THEME)
-                    Log.d("click", model.isIncrease.toString())
+                    callback.onSort(SortAttributes.THEME)
                 },stringResource(R.string.ah_themes))
         TableTextColumnName(
             Modifier
                 .weight(1f)
                 .clickable {
-                    model.isIncrease = !model.isIncrease
-                    model.sortByDate(SortAttributes.STATUS)
-                    Log.d("click", model.isIncrease.toString())
+                    callback.onSort(SortAttributes.STATUS)
                 },stringResource(R.string.ah_status))
     }
 }
@@ -273,15 +265,15 @@ fun TableText(
     )
 }
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreviewAppealsTable() {
-    val data = getAppealsLocal()
-    val model: MainViewModel = viewModel()
-    MainTheme {
-        AppealsTable(data, model)
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun DefaultPreviewAppealsTable() {
+//    val data = getAppealsLocal()
+//    val model: MainViewModel = viewModel()
+//    MainTheme {
+//        AppealsTable(data, model)
+//    }
+//}
 
 @Preview(showBackground = true)
 @Composable

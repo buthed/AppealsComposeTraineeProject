@@ -27,7 +27,6 @@ interface AppealHistoryScreenCallback{
 @Composable
 fun AppealHistoryScreen(
     appealData: State<List<Appeal>>,
-    model: MainViewModel,
     callback: AppealHistoryScreenCallback
 ) {
 
@@ -57,7 +56,7 @@ fun AppealHistoryScreen(
                         callback.onGetData()
                     })
                 Spacer(modifier = Modifier.height(35.dp))
-                AppealsTable(appealData.value, model)
+                AppealsTable(appealData.value, callback)
             }
         }
     }

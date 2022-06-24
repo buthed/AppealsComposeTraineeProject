@@ -29,7 +29,7 @@ class AppealHistoryFragment: Fragment(), AppealHistoryScreenCallback {
         return ComposeView(requireContext()).apply {
             setContent {
                 val appealsData: State<List<Appeal>> = viewModel.appeals.observeAsState(listOf())
-                AppealHistoryScreen(appealsData,viewModel, object: AppealHistoryScreenCallback{
+                AppealHistoryScreen(appealsData, object: AppealHistoryScreenCallback{
                     override fun onSearch(query: String) {
                         viewModel.search(query)
                     }

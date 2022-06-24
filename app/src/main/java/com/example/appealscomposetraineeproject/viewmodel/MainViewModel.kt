@@ -53,7 +53,7 @@ class MainViewModel(): ViewModel() {
 
     fun sortByDate(column: SortAttributes) {
         val data = appealLiveData.value ?: return
-
+        isIncrease = !isIncrease
         fun <R: Comparable<R>> sort(selector: (Appeal) -> R): List<Appeal> =
             if (isIncrease)  data.sortedBy(selector)
             else data.sortedByDescending(selector)
