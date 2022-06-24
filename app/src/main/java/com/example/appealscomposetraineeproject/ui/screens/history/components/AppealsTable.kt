@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.appealscomposetraineeproject.R
 import com.example.appealscomposetraineeproject.model.entities.Appeal
+import com.example.appealscomposetraineeproject.model.entities.SortAttributes
 import com.example.appealscomposetraineeproject.model.entities.getAppealsLocal
 import com.example.appealscomposetraineeproject.ui.theme.AppealsComposeTheme
 import com.example.appealscomposetraineeproject.ui.theme.MainTheme
@@ -213,7 +214,7 @@ fun ColumnHeader(
                 .weight(1f)
                 .clickable {
                     model.isIncrease = !model.isIncrease
-                    model.sortByDate("DATE")
+                    model.sortByDate(SortAttributes.DATE)
                     Log.d("click", model.isIncrease.toString())
                 },stringResource(R.string.ah_date))
         TableTextColumnName(
@@ -221,7 +222,7 @@ fun ColumnHeader(
                 .weight(1f)
                 .clickable {
                     model.isIncrease = !model.isIncrease
-                    model.sortByDate("NUMBER")
+                    model.sortByDate(SortAttributes.NUMBER)
                     Log.d("click", model.isIncrease.toString())
                 },stringResource(R.string.ah_number))
         TableTextColumnName(
@@ -229,7 +230,7 @@ fun ColumnHeader(
                 .weight(1f)
                 .clickable {
                     model.isIncrease = !model.isIncrease
-                    model.sortByDate("THEME")
+                    model.sortByDate(SortAttributes.THEME)
                     Log.d("click", model.isIncrease.toString())
                 },stringResource(R.string.ah_themes))
         TableTextColumnName(
@@ -237,7 +238,7 @@ fun ColumnHeader(
                 .weight(1f)
                 .clickable {
                     model.isIncrease = !model.isIncrease
-                    model.sortByDate("STATUS")
+                    model.sortByDate(SortAttributes.STATUS)
                     Log.d("click", model.isIncrease.toString())
                 },stringResource(R.string.ah_status))
     }

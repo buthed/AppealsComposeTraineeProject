@@ -8,6 +8,8 @@ import com.example.appealscomposetraineeproject.model.entities.Appeal
 import com.example.appealscomposetraineeproject.model.entities.SortAttributes
 import com.example.appealscomposetraineeproject.model.repository.Repository
 import com.example.appealscomposetraineeproject.model.repository.RepositoryImpl
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class MainViewModel(): ViewModel() {
@@ -19,13 +21,17 @@ class MainViewModel(): ViewModel() {
     var isIncrease by mutableStateOf(true)
 
     fun getAppeals() {
+        viewModelScope.launch(Dispatchers.IO) {
+            appealLiveData.postValue(
+                repository.getAppeals()
+            )
+        }
         appealLiveData.value = repository.getAppeals()
     }
 
     fun search(input: String) {
-        val data = appealLiveData.value as MutableList<Appeal>
-        val result: MutableList<Appeal> = listOf<Appeal>().toMutableList()
-        result.clear()
+        val data = appealLiveData.value ?: return
+        val result = mutableListOf<Appeal>()
         for (item in data) {
             if (
                 item.theme.lowercase().contains(input.lowercase()) ||
@@ -35,32 +41,28 @@ class MainViewModel(): ViewModel() {
                 item.textOfAppeal.contains(input)
             ) result.add(item)
         }
+//        data.filter {
+//            it.theme.lowercase().contains(input.lowercase()) ||
+//                    it.status.contains(input.lowercase()) ||
+//                    it.number.toString().contains(input.lowercase()) ||
+//                    it.answerForAppeal.contains(input.lowercase()) ||
+//                    it.textOfAppeal.contains(input.lowercase())
+//        }
         appealLiveData.value = result
     }
 
-    fun sortByDate(column: String) {
-        val data = appealLiveData.value
-        var result: MutableList<Appeal> = listOf<Appeal>().toMutableList()
+    fun sortByDate(column: SortAttributes) {
+        val data = appealLiveData.value ?: return
 
-        if (data != null) {
-            if (SortAttributes.DATE.name.equals(column)) {
-                result = if (isIncrease) { data.sortedBy { it.date }.toMutableList()
-                } else data.sortedByDescending { it.date }.toMutableList()
-            }
-            else if (SortAttributes.NUMBER.name.equals(column)) {
-                result = if (isIncrease) { data.sortedBy { it.number }.toMutableList()
-                } else data.sortedByDescending { it.number }.toMutableList()
-            }
-            else if (SortAttributes.THEME.name.equals(column)) {
-                result = if (isIncrease) { data.sortedBy { it.theme }.toMutableList()
-                } else data.sortedByDescending { it.theme }.toMutableList()
-            }
-            else if (SortAttributes.STATUS.name.equals(column)) {
-                result = if (isIncrease) { data.sortedBy { it.status }.toMutableList()
-                } else data.sortedByDescending { it.status }.toMutableList()
-            }
+        fun <R: Comparable<R>> sort(selector: (Appeal) -> R): List<Appeal> =
+            if (isIncrease)  data.sortedBy(selector)
+            else data.sortedByDescending(selector)
 
-            appealLiveData.value = result
+        appealLiveData.value = when(column) {
+            SortAttributes.DATE -> sort { it.date }
+            SortAttributes.NUMBER -> sort { it.number }
+            SortAttributes.THEME -> sort { it.theme }
+            SortAttributes.STATUS -> sort { it.status }
         }
     }
 }

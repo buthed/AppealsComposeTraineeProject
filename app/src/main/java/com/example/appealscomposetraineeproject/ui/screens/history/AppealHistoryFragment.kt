@@ -4,8 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.runtime.State
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
+import com.example.appealscomposetraineeproject.model.entities.Appeal
 import com.example.appealscomposetraineeproject.viewmodel.MainViewModel
 
 class AppealHistoryFragment: Fragment() {
