@@ -9,11 +9,18 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import com.example.appealscomposetraineeproject.model.entities.Appeal
+import com.example.appealscomposetraineeproject.model.entities.SortAttributes
 import com.example.appealscomposetraineeproject.viewmodel.MainViewModel
 
-class AppealHistoryFragment: Fragment() {
+class AppealHistoryFragment: Fragment(), AppealHistoryScreenCallback {
 
     private val viewModel: MainViewModel = MainViewModel()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        viewModel.getAppeals()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,8 +28,34 @@ class AppealHistoryFragment: Fragment() {
     ): View? {
         return ComposeView(requireContext()).apply {
             setContent {
-                AppealHistoryScreen(viewModel)
+                val appealsData: State<List<Appeal>> = viewModel.appeals.observeAsState(listOf())
+                AppealHistoryScreen(appealsData,viewModel, object: AppealHistoryScreenCallback{
+                    override fun onSearch(query: String) {
+                        viewModel.search(query)
+                    }
+
+                    override fun onSort(column: SortAttributes) {
+                        viewModel.sortByDate(column)
+                    }
+
+                    override fun onGetData() {
+                        viewModel.getAppeals()
+                    }
+                })
+
             }
         }
+    }
+
+    override fun onSearch(query: String) {
+        viewModel.search(query)
+    }
+
+    override fun onSort(column: SortAttributes) {
+        viewModel.sortByDate(column)
+    }
+
+    override fun onGetData() {
+        viewModel.getAppeals()
     }
 }

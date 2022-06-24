@@ -35,6 +35,7 @@ import com.example.appealscomposetraineeproject.R
 import com.example.appealscomposetraineeproject.model.entities.Appeal
 import com.example.appealscomposetraineeproject.model.entities.SortAttributes
 import com.example.appealscomposetraineeproject.model.entities.getAppealsLocal
+import com.example.appealscomposetraineeproject.ui.screens.history.AppealHistoryScreenCallback
 import com.example.appealscomposetraineeproject.ui.theme.AppealsComposeTheme
 import com.example.appealscomposetraineeproject.ui.theme.MainTheme
 import com.example.appealscomposetraineeproject.viewmodel.MainViewModel
