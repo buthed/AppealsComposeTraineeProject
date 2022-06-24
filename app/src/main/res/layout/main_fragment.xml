@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.MainFragment">
 
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/top_app_bar_composable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints" />
+        app:tabIndicatorColor="#2D69A6"
+        app:tabMaxWidth="0dp"
+        app:tabMode="fixed"
+        app:tabGravity="fill"
+        app:tabTextColor="@color/black"
+        app:tabTextAppearance="@style/TabText"
+        tools:ignore="MissingConstraints"/>
 
     <androidx.viewpager2.widget.ViewPager2
         xmlns:android="http://schemas.android.com/apk/res/android"

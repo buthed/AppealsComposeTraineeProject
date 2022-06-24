@@ -8,6 +8,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.appealscomposetraineeproject.R
+import com.example.appealscomposetraineeproject.TopAppBarCompose
 import com.example.appealscomposetraineeproject.databinding.MainFragmentBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -28,6 +29,9 @@ class MainFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.topAppBarComposable.setContent {
+            TopAppBarCompose()
+        }
         viewPagerAdapter = MainViewPagerAdapter(this)
         viewPager2 = binding.viewPager
         viewPager2.adapter = viewPagerAdapter

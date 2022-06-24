@@ -1,7 +1,9 @@
 package com.example.appealscomposetraineeproject.ui.screens.history.components
 
 import android.net.Uri
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExitTransition
@@ -37,6 +39,7 @@ import com.example.appealscomposetraineeproject.model.entities.getAppealsLocal
 import com.example.appealscomposetraineeproject.ui.theme.AppealsComposeTheme
 import com.example.appealscomposetraineeproject.ui.theme.MainTheme
 import com.example.appealscomposetraineeproject.viewmodel.MainViewModel
+import java.time.LocalDate
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -82,7 +85,7 @@ fun TableRow(modifier: Modifier = Modifier,
         Arrangement.SpaceAround,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        TableText(Modifier.weight(1f),data.date)
+        TableText(Modifier.weight(1f),data.date.toString())
         TableText(Modifier.weight(1f),data.number.toString())
         TableText(Modifier.weight(1f),data.theme)
         TableText(Modifier.weight(1f),data.status)
@@ -105,7 +108,7 @@ fun TableAdditionalInfo(
                     Modifier
                         .weight(1f)
                         .padding(top = 50.dp),
-                    data.date,
+                    data.date.toString(),
                     style = TextStyle(color = AppealsComposeTheme.colors.GrayStatus)
                 )
                 Box(Modifier.weight(3f)) {
@@ -281,10 +284,12 @@ fun DefaultPreviewAppealsTable() {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreviewTableRowAdditionalInfo() {
-    val data =  Appeal("22.03.2021",15203, "Передача показателей", "wait", "В квитанции за январь у меня не правильно отражаются показания, последний раз\n" +
+    val data =  Appeal(
+        LocalDate.of(2021,3,22),15203, "Передача показателей", "wait", "В квитанции за январь у меня не правильно отражаются показания, последний раз\n" +
             "я передавал показания 20.01.2021 года 5516, а в квитанции 5550. Прошу Вас разобраться в данной ситуации.","В квитанции за январь у меня не правильно отражаются показания, последний раз\n" +
             "я передавал показания 20.01.2021 года 5516, а в квитанции 5550. Прошу Вас разобраться в данной ситуации.",
         listOf("chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://google-developer-training.github.io/android-developer-fundamentals-course-concepts/en/android-developer-fundamentals-course-concepts-en.pdf",
